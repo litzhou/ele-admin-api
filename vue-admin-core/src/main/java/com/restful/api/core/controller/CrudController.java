@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.restful.api.core.Rest;
+import com.restful.api.core.anno.Log;
 import com.restful.api.core.ex.NotFindDataException;
 import com.restful.api.core.util.ValidateUtil;
 
@@ -79,6 +80,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	 * @param result 验证器，和Mode层配合使用
 	 * @return
 	 */
+    @Log("add")
 	@PostMapping
 	public Rest add(@Valid T t,BindingResult result){
 		
@@ -89,6 +91,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 		return Rest.ok();
 	}
 	
+    @Log("update")
     @PutMapping  
     public  Rest update(@Valid T t,BindingResult result){
 		if(result.hasErrors()){
@@ -103,6 +106,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	 * @param id
 	 * @return
 	 */
+    @Log("delete")
 	@DeleteMapping("/{id}")
 	public Rest delete(@PathVariable("id") Serializable id){
 		if(id==null){
@@ -127,6 +131,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	 * @param ids
 	 * @return
 	 */
+    @Log("batch delete")
 	@DeleteMapping("/del/batch")
 	public Rest delete(@RequestParam(value="ids",required=false) Serializable[] ids){
 		

@@ -31,7 +31,7 @@ public class MysqlGenerator {
 
 		// 全局配置
 		GlobalConfig gc = new GlobalConfig();
-		gc.setOutputDir("G:/develop/code2/");
+		gc.setOutputDir("e:/develop/code2/");
 		gc.setFileOverride(true);
 		gc.setActiveRecord(true);// 开启 activeRecord 模式
 		gc.setEnableCache(false);// XML 二级缓存
@@ -75,7 +75,7 @@ public class MysqlGenerator {
 		//strategy.setTablePrefix(new String[] { "bmd_", "mp_" });// 此处可以修改为您的表前缀
 		strategy.setTablePrefix(new String[] { "tb_"});// 此处可以修改为您的表前缀
 		strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-		strategy.setInclude(new String[] {"tb_role" }); // 需要生成的表
+		strategy.setInclude(new String[] {"tb_log" }); // 需要生成的表
 		// strategy.setExclude(new String[]{"test"}); // 排除生成的表
 		// 字段名生成策略
 		//strategy.setFieldNaming(NamingStrategy.nochange);

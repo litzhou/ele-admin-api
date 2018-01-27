@@ -39,7 +39,7 @@ public class LoginController{
 	public Rest info(String token){
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("name", "admin");
-		map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+		map.put("avatar", "https://avatars3.githubusercontent.com/u/6360011?s=460&v=4");
 		map.put("role", new String[]{"admin"});
 		map.put("roles", new String[]{"admin"});
 		
