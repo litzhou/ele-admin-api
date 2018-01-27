@@ -1,10 +1,12 @@
 package com.restful.api.core.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.restful.api.core.Rest;
@@ -102,7 +105,6 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	 */
 	@DeleteMapping("/{id}")
 	public Rest delete(@PathVariable("id") Serializable id){
-		
 		if(id==null){
 			throw new RuntimeException("参数{id}不能为空");
 		}
@@ -115,6 +117,24 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 		if(t== null){
 			throw new NotFindDataException("要删除的对象不存在");
 		}else if(s.deleteById(id)){
+			return Rest.ok("删除成功");
+		}else{
+			throw new RuntimeException("糟糕,删除失败");
+		}
+	}
+	/**
+	 * 批量删除
+	 * @param ids
+	 * @return
+	 */
+	@DeleteMapping("/del/batch")
+	public Rest delete(@RequestParam(value="ids",required=false) Serializable[] ids){
+		
+		if (ArrayUtils.isEmpty(ids)){
+			throw new RuntimeException("参数{ids}不能为空");
+		}
+		boolean bool = s.deleteBatchIds(Arrays.asList(ids));
+		if(bool){
 			return Rest.ok("删除成功");
 		}else{
 			throw new RuntimeException("糟糕,删除失败");
