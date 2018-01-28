@@ -37,7 +37,12 @@ public class LogBean {
 	 * 其他数据
 	 */
 	private String other;
-
+	
+	/**
+	 * 日志url
+	 */
+	private String LogUrl;
+	
 	public String getLogTitle() {
 		return logTitle;
 	}
@@ -94,11 +99,23 @@ public class LogBean {
 	public void setOther(String other) {
 		this.other = other;
 	}
+	
+	
+	
+	public String getLogUrl() {
+		return LogUrl;
+	}
+
+	public void setLogUrl(String logUrl) {
+		LogUrl = logUrl;
+	}
 
 	@Override
 	public String toString() {
 		return "LogBean [logTitle=" + logTitle + ", logContent=" + logContent + ", clientIp=" + clientIp + ", logTime="
 				+ logTime + ", requestMethod=" + requestMethod + ", requestParams=" + requestParams + ", other=" + other
-				+ "]";
+				+ ", LogUrl=" + LogUrl + "]";
 	}
+
+	
 }

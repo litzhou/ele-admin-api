@@ -93,7 +93,7 @@ public class ExceptionAdvice {
     /**
      * 500 - Internal Server Error
      */
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     public Rest handleException(Exception e) {
         logger.error("服务运行异常,"+e.getMessage(), e);

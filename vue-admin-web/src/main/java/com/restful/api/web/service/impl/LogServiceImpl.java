@@ -32,6 +32,7 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
 		log.setOther(logBean.getOther());
 		log.setRequestMethod(logBean.getRequestMethod());
 		log.setRequestParams(logBean.getRequestParams());
+		log.setLogUrl(logBean.getLogUrl());
 		super.insert(log);
 	}
 	

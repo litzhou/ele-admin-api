@@ -62,6 +62,7 @@ public class LogAdvice {
 				logBean.setRequestMethod(request.getMethod());
 				logBean.setClientIp(IpUtil.getIpAddr(request));
 				logBean.setRequestParams(new Gson().toJson(request.getParameterMap()));
+				logBean.setLogUrl(request.getRequestURI()+"?"+request.getQueryString());
 				logger.debug("logBean:"+logBean.toString());
 				logApi.log(logBean);
 			}else{

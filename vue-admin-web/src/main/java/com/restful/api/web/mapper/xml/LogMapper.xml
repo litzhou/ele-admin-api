@@ -13,6 +13,7 @@
 		<result column="requestParams" property="requestParams" />
 		<result column="other" property="other" />
 		<result column="userName" property="userName" />
+		<result column="logUrl" property="logUrl" />
 	</resultMap>
 
 </mapper>

@@ -62,6 +62,11 @@ public class Log extends Model<Log> {
 	 */
 	private String userName;
 	
+	/**
+	 * 日志url
+	 */
+	private String logUrl;
+	
 	public String getId() {
 		return id;
 	}
@@ -138,5 +143,14 @@ public class Log extends Model<Log> {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	public String getLogUrl() {
+		return logUrl;
+	}
+
+	public void setLogUrl(String logUrl) {
+		this.logUrl = logUrl;
+	}
+	
 	
 }

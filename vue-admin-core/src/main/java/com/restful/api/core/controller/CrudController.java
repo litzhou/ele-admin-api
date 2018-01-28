@@ -83,7 +83,6 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
     @Log("add")
 	@PostMapping
 	public Rest add(@Valid T t,BindingResult result){
-		
 		if(result.hasErrors()){
 			return Rest.failure(500,"参数验证失败",ValidateUtil.toStringJson(result),"error");
 		}
