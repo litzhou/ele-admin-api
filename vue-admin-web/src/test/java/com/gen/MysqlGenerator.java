@@ -75,7 +75,7 @@ public class MysqlGenerator {
 		//strategy.setTablePrefix(new String[] { "bmd_", "mp_" });// 此处可以修改为您的表前缀
 		strategy.setTablePrefix(new String[] { "tb_"});// 此处可以修改为您的表前缀
 		strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-		strategy.setInclude(new String[] {"tb_log" }); // 需要生成的表
+		strategy.setInclude(new String[] {"tb_menu","tb_role_menu","tb_user_role" }); // 需要生成的表
 		// strategy.setExclude(new String[]{"test"}); // 排除生成的表
 		// 字段名生成策略
 		//strategy.setFieldNaming(NamingStrategy.nochange);
