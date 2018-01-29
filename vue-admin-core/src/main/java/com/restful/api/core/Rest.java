@@ -1,7 +1,7 @@
 package com.restful.api.core;
 
 /**
- * 相应消息对象
+ * 响应消息对象
  * Created by Gaojun.Zhou 2017年6月8日
  */
 
