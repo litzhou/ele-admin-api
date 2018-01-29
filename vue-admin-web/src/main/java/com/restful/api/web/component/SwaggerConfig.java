@@ -28,10 +28,10 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("restful-api,Restfull接口生成框架")
+		return new ApiInfoBuilder().title("vue-admin接口1.0")
 				.termsOfServiceUrl("http://blog.jdoop.cn/")
 				.description("springmvc + swagger2 Restfull接口生成框架")
-				.contact(new Contact("JamesZhou", "http://blog.jdoop.cn/", "gaojun.zhou@qq.com"))
+				.contact(new Contact("liezhou", "litzhou.com", "gaojun.zhou@qq.com"))
 				.version("1.0.0")
 				.build();
 	}
