@@ -12,5 +12,12 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-01-26
  */
 public interface IRoleService extends IService<Role> {
+
+	/**
+	 * 分配权限
+	 * @param roleId
+	 * @param menuIds
+	 */
+	void updateAuth(String roleId, String[] menuIds);
 	
 }

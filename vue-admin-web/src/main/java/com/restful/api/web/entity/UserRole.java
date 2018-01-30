@@ -1,7 +1,11 @@
 package com.restful.api.web.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -15,11 +19,13 @@ import java.io.Serializable;
 @TableName("tb_user_role")
 public class UserRole extends Model<UserRole> {
 
+	@TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键
      */
+	@TableId(type = IdType.UUID)
 	private String Id;
     /**
      * 用户主键
