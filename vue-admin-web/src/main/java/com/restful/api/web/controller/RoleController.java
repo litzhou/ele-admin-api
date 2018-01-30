@@ -13,8 +13,10 @@ import com.restful.api.core.anno.Log;
 import com.restful.api.core.controller.AppController;
 import com.restful.api.web.entity.Role;
 import com.restful.api.web.entity.RoleMenu;
+import com.restful.api.web.entity.UserRole;
 import com.restful.api.web.service.IRoleMenuService;
 import com.restful.api.web.service.IRoleService;
+import com.restful.api.web.service.IUserRoleService;
 /**
  * 角色控制器
  * Created by Gaojun.Zhou 2017年6月8日
@@ -24,6 +26,7 @@ import com.restful.api.web.service.IRoleService;
 public class RoleController extends AppController<Role,IRoleService>{  
 	
 	@Autowired private IRoleMenuService roleMenuService;
+	@Autowired private IUserRoleService userRoleService;
 	
 	/**
 	 * 获取权限ID
@@ -47,5 +50,12 @@ public class RoleController extends AppController<Role,IRoleService>{
 	public Rest doAuth(String roleId, @RequestParam(value="menuIds[]",required=false) String[] menuIds){
 		super.getS().updateAuth(roleId,menuIds);
 		return Rest.ok();
+	}
+	
+	@GetMapping("/uid")
+	public Rest getRoleIdByUid(String userId){
+		EntityWrapper<UserRole> ew = new EntityWrapper<UserRole>();
+		ew.setSqlSelect("roleId").eq("userId", userId);
+		return Rest.okData(userRoleService.selectObjs(ew));
 	}
 }

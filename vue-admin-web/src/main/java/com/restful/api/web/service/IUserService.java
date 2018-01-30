@@ -12,5 +12,8 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2017-06-21
  */
 public interface IUserService extends IService<User> {
+
+	void addUser(User user, String[] roleIds);
 	
+	void updateUser(User user, String[] roleIds);
 }
