@@ -1,6 +1,8 @@
 package com.vacomall.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 
@@ -42,10 +44,9 @@ public class LoginController extends SuperController {
 	/**
 	 * 执行登录
 	 */
-	@PostMapping(value = "/doLogin")
+	@PostMapping("/doLogin")
 	@ResponseBody
 	public Rest doLogin(String username, String password, String captcha) {
-
 		Subject currentUser = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
@@ -70,9 +71,36 @@ public class LoginController extends SuperController {
 		Subject subject = SecurityUtils.getSubject();
 		SysUser sysUser = (SysUser) subject.getPrincipal();
 		sysLogService.insertLog("用户登录成功", sysUser.getUserName(), request.getRequestURI(), "");
-		return Rest.okData(sysUser);
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("token", sysUser.getUserName());
+		return Rest.okData(map);
 	}
-
+	
+	/**
+	 * 获取用户信息
+	 * @param token
+	 * @return
+	 */
+	@GetMapping("/info")
+	@ResponseBody
+	public Rest info(String token){
+		Subject subject = SecurityUtils.getSubject();
+		if(subject == null) {
+			throw new RuntimeException("登录失效");
+		}
+		SysUser sysUser = (SysUser) subject.getPrincipal();
+		if(!sysUser.getUserName().equals(token)) {
+			throw new RuntimeException("登录失效");
+		}
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("name", sysUser.getUserName());
+		map.put("avatar", sysUser.getUserImg());
+		map.put("role", new String[]{"admin"});
+		map.put("roles", new String[]{"admin"});
+		return Rest.okData(map);
+	}
+	
 	/**
 	 * 验证码
 	 */
