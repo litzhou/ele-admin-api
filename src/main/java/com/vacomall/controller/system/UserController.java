@@ -82,7 +82,6 @@ public class UserController extends SuperController {
 	@RequiresPermissions("deleteUser")
 	@DeleteMapping("/delete")
 	public Rest delete(@RequestParam(value="ids",required=false)String[] ids) {
-		System.out.println(1/0);
 		if(ArrayUtils.isEmpty(ids)){
 			throw new RuntimeException("客户端传入参数ids为空");
 		}
