@@ -115,7 +115,7 @@ public class LoginController extends SuperController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/logout")
+	@PostMapping("/logout")
 	@ResponseBody
 	public Rest logout() {
 		Subject subject = SecurityUtils.getSubject();

@@ -7,12 +7,13 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -35,7 +36,7 @@ import com.vacomall.service.ISysUserService;
  * @author Gaojun.Zhou
  * @date 2016年12月13日 上午10:23:41
  */
-@Controller
+@RestController
 @RequestMapping("/system/role")
 public class RoleController extends SuperController{  
 
@@ -221,4 +222,12 @@ public class RoleController extends SuperController{
 		return String.valueOf(count);
 	}
 	
+	/**
+	 * 获取所有角色
+	 * @return
+	 */
+	@GetMapping("/all")
+	public Rest getAll() {
+		return Rest.okData(sysRoleService.selectList(null));
+	}
 }
