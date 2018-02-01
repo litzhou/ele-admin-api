@@ -43,15 +43,14 @@ public class UserController extends SuperController {
 	 */
 	@RequiresPermissions("listUser")
 	@GetMapping("/list")
-	public Rest list(@RequestParam(defaultValue = "1") Integer pageNumber,
-			@RequestParam(defaultValue = "15") Integer pageSize,
-			String field,String value) {
+	public Rest list(@RequestParam(defaultValue = "1") Integer page,
+			@RequestParam(defaultValue = "15") Integer size,
+			String field,String search) {
 		EntityWrapper<SysUser> ew = new EntityWrapper<>();
-		if (StringUtils.isNotBlank(value)) {
-			ew.like(field, value);
+		if (StringUtils.isNotBlank(search)) {
+			ew.like(field, search);
 		}
-		Page<SysUser> page = getPage(pageNumber, pageSize);
-		Page<SysUser> pageData = sysUserService.selectPage(page, ew);
+		Page<SysUser> pageData = sysUserService.selectPage(getPage(page,size), ew);
 		return Rest.okData(pageData);
 	}
 
@@ -61,8 +60,8 @@ public class UserController extends SuperController {
 	@Log("创建用户")
 	@RequiresPermissions("addUser")
 	@PostMapping("/add")
-	public Rest add(SysUser user, @RequestParam(value = "roleId[]", required = false) String[] roleId) {
-		sysUserService.insertUser(user, roleId);
+	public Rest add(SysUser user, @RequestParam(value = "roleIds[]", required = false) String[] roleIds) {
+		sysUserService.insertUser(user, roleIds);
 		return Rest.ok();
 	}
 	/**
@@ -71,8 +70,8 @@ public class UserController extends SuperController {
 	@Log("编辑用户")
 	@RequiresPermissions("editUser")
 	@PutMapping("/edit")
-	public Rest edit(SysUser sysUser, @RequestParam(value = "roleId[]", required = false) String[] roleId) {
-		sysUserService.updateUser(sysUser, roleId);
+	public Rest edit(SysUser sysUser, @RequestParam(value = "roleIds[]", required = false) String[] roleIds) {
+		sysUserService.updateUser(sysUser, roleIds);
 		return Rest.ok();
 	}
 	/**

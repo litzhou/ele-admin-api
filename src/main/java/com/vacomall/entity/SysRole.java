@@ -46,7 +46,12 @@ public class SysRole extends Model<SysRole> {
      */
 	private Date createTime;
 
-
+	
+	/**
+	 * 角色编码
+	 */
+	private String roleCode;
+	
 	public String getId() {
 		return id;
 	}
@@ -90,6 +95,14 @@ public class SysRole extends Model<SysRole> {
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
+	}
+
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
 	}
 
 }

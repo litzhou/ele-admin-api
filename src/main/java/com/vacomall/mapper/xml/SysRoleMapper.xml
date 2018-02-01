@@ -9,6 +9,7 @@
 		<result column="roleDesc" property="roleDesc" />
 		<result column="roleState" property="roleState" />
 		<result column="createTime" property="createTime" />
+		<result column="roleCode" property="roleCode" />
 	</resultMap>
 
 </mapper>

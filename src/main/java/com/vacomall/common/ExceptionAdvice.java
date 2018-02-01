@@ -93,7 +93,7 @@ public class ExceptionAdvice {
      * @param model
      * @return
      */
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     public Rest handleException(Exception e,Model model) {
         logger.error("服务运行异常,"+e.getMessage());
@@ -105,7 +105,7 @@ public class ExceptionAdvice {
      * @param model
      * @return
      */
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(UnauthorizedException.class)
     public Rest handleUnauthorizedException(Exception e,Model model) {
     	logger.error("没有权限,"+e.getMessage());

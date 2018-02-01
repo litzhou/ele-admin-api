@@ -21,11 +21,11 @@ public interface ISysUserService extends IService<SysUser> {
 	/**
 	 * 保存用户
 	 */
-	void insertUser(SysUser user, String[] roleId);
+	void insertUser(SysUser user, String[] roleIds);
 	/**
 	 * 更新用户
 	 */
-	void updateUser(SysUser sysUser, String[] roleId);
+	void updateUser(SysUser sysUser, String[] roleIds);
 	/**
 	 * 删除用户
 	 */
