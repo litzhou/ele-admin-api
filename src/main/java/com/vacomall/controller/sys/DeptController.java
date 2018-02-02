@@ -1,4 +1,4 @@
-package com.vacomall.controller.system;
+package com.vacomall.controller.sys;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,7 +23,7 @@ import com.vacomall.service.ISysDeptService;
  * @date 2016年12月16日 下午5:03:49
  */
 @Controller
-@RequestMapping("/system/dept")
+@RequestMapping("/sys/dept")
 public class DeptController extends SuperController{  
 
 	@Autowired private ISysDeptService sysDeptService;

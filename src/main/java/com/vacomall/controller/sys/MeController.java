@@ -1,4 +1,4 @@
-package com.vacomall.controller.system;
+package com.vacomall.controller.sys;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -20,7 +20,7 @@ import com.vacomall.service.ISysUserService;
  * @date 2016年12月16日 下午4:24:04
  */
 @Controller
-@RequestMapping("/system/me")
+@RequestMapping("/sys/me")
 public class MeController extends SuperController{  
 	
 	@Autowired private ISysUserService sysUserService;

@@ -1,17 +1,19 @@
-package com.vacomall.controller.system;
+package com.vacomall.controller.sys;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.vacomall.common.bean.Rest;
 import com.vacomall.common.controller.SuperController;
 import com.vacomall.entity.SysLog;
 import com.vacomall.service.ISysLogService;
@@ -20,8 +22,8 @@ import com.vacomall.service.ISysLogService;
  * @author Gaojun.Zhou
  * @date 2016年12月13日 上午10:22:41
  */
-@Controller
-@RequestMapping("/system/log")
+@RestController
+@RequestMapping("/sys/log")
 public class LogController extends SuperController{  
 
 	@Autowired private ISysLogService sysLogService;
@@ -30,8 +32,8 @@ public class LogController extends SuperController{
 	 * 分页查询日志
 	 */
 	@RequiresPermissions("listLog")
-    @RequestMapping("/list/{pageNumber}")  
-    public  String list(@PathVariable Integer pageNumber, @RequestParam(defaultValue="15") Integer pageSize, String search,String daterange,Model model){
+    @RequestMapping("/list2/{pageNumber}")  
+    public  String list2(@PathVariable Integer pageNumber, @RequestParam(defaultValue="15") Integer pageSize, String search,String daterange,Model model){
     	
 		Page<SysLog> page = getPage(pageNumber,pageSize);
 		page.setOrderByField("createTime");
@@ -65,5 +67,19 @@ public class LogController extends SuperController{
     	SysLog sysLog = sysLogService.selectById(id);
     	return sysLog.getParams();
     }
+    
+    @RequiresPermissions("listLog")
+    @GetMapping("/list")
+	public Rest list(@RequestParam(required = true, defaultValue = "1") Integer page,
+			@RequestParam(defaultValue = "10") Integer size, String field, String search) {
+
+		EntityWrapper<SysLog> ew = new EntityWrapper<SysLog>();
+		ew.orderBy("createTime",false);
+		if (StringUtils.isNotBlank(field) && StringUtils.isNotBlank(search)) {
+			ew.like(field, search);
+		}
+		Page<SysLog> pageData = sysLogService.selectPage(new Page<SysLog>(page, size), ew);
+		return Rest.okData(pageData);
+	}
     
 }

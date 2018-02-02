@@ -17,6 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.google.gson.Gson;
 import com.vacomall.common.anno.Log;
+import com.vacomall.common.util.IpUtil;
 import com.vacomall.common.util.ShiroUtil;
 import com.vacomall.common.util.SpringUtil;
 import com.vacomall.entity.SysLog;
@@ -54,8 +55,10 @@ public class LogAdvice {
 			sysLog.setCreateTime(new Date());
 			sysLog.setTitle(log.value());
 			sysLog.setUserName((sysUser != null )? sysUser.getUserName() : "system");
-			sysLog.setUrl(request.getRequestURI().toString());
+			sysLog.setUrl(request.getRequestURI().toString() + "?" + request.getQueryString());
 			sysLog.setParams(new Gson().toJson(request.getParameterMap()));
+			sysLog.setIp(IpUtil.getIpAddr(request));
+			sysLog.setMethod(request.getMethod());
 			SpringUtil.getBean(ISysLogService.class).insert(sysLog);
 			LOG.debug("记录日志:"+sysLog.toString());
 		}

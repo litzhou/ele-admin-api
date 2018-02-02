@@ -1,4 +1,4 @@
-package com.vacomall.controller.system;
+package com.vacomall.controller.sys;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import com.vacomall.common.controller.SuperController;
  * @date 2017年2月5日 下午3:38:19
  */
 @Controller
-@RequestMapping("/system/monitor")
+@RequestMapping("/sys/monitor")
 public class MonitorController extends SuperController{  
 	
 	/**

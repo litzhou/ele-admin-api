@@ -1,4 +1,4 @@
-package com.vacomall.controller.system;
+package com.vacomall.controller.sys;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -36,7 +36,7 @@ import com.vacomall.service.ISysRoleService;
  * @date 2016年12月13日 上午10:23:41
  */
 @RestController
-@RequestMapping("/system/role")
+@RequestMapping("/sys/role")
 public class RoleController extends SuperController{  
 
 	/**
@@ -135,8 +135,8 @@ public class RoleController extends SuperController{
 	@RequiresPermissions("authRole")
     @Log("角色分配权限")
     @RequestMapping("/doAuth")  
-    public  Rest doAuth(String roleId,@RequestParam(value="mid[]",required=false) String[] mid){
-    	sysRoleMenuService.addAuth(roleId,mid);
+    public  Rest doAuth(String roleId,@RequestParam(value="menuIds[]",required=false) String[] menuIds){
+    	sysRoleMenuService.addAuth(roleId,menuIds);
     	return Rest.ok("OK,授权成功,1分钟后生效  ~");
     } 
 	
@@ -147,5 +147,26 @@ public class RoleController extends SuperController{
 	@GetMapping("/getRoleAll")
 	public Rest getRoleAll() {
 		return Rest.okData(sysRoleService.selectList(null));
+	}
+	
+	/**
+	 * 根据获取角色
+	 * @return
+	 */
+	@GetMapping("/getById")
+	public Rest getById(String roleId) {
+		return Rest.okData(sysRoleService.selectById(roleId));
+	}
+	
+	/**
+	 * 获取角色ID获取拥有的权限ID(菜单ID)集合
+	 * @param roleId
+	 * @return
+	 */
+	@GetMapping("/getMenuIdsByRoleId")
+	public Rest getMenuIdsByRoleId(String roleId){
+		EntityWrapper<SysRoleMenu> ew = new EntityWrapper<SysRoleMenu>();
+		ew.setSqlSelect("menuId").eq("roleId", roleId);
+		return Rest.okData(sysRoleMenuService.selectObjs(ew));
 	}
 }

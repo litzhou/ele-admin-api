@@ -10,6 +10,8 @@
 		<result column="url" property="url" />
 		<result column="params" property="params" />
 		<result column="createTime" property="createTime" />
+		<result column="method" property="method" />
+		<result column="ip" property="ip" />
 	</resultMap>
 
 </mapper>

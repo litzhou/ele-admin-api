@@ -1,4 +1,4 @@
-package com.vacomall.controller.system;
+package com.vacomall.controller.sys;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +32,7 @@ import com.vacomall.service.ISysUserService;
  * @date 2016年12月13日 上午10:22:41
  */
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("/sys/user")
 public class UserController extends SuperController {
 
 	@Autowired private ISysUserService sysUserService;
@@ -110,5 +110,18 @@ public class UserController extends SuperController {
 		List<Object> list = sysUserRoleService.selectObjs(new EntityWrapper<SysUserRole>().setSqlSelect("roleId").eq("userId", userId));
 		return Rest.okData(list);
 	}
-
+	
+	/**
+	 * 获取最新的N条用户
+	 * @param num
+	 * @return
+	 */
+	@GetMapping("/getNewUserByNum")
+	public Rest getNewUserByNum(Integer num) {
+		EntityWrapper<SysUser> wrapper = new EntityWrapper<SysUser>();
+		wrapper.orderBy("createTime",false);
+		wrapper.last("limit " + num);
+		List<SysUser> list = sysUserService.selectList(wrapper);
+		return Rest.okData(list);
+	}
 }

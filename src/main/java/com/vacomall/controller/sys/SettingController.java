@@ -1,4 +1,4 @@
-package com.vacomall.controller.system;
+package com.vacomall.controller.sys;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import com.vacomall.service.ISysSettingService;
  * @date 2016年12月16日 下午4:24:13
  */
 @Controller
-@RequestMapping("/system/setting")
+@RequestMapping("/sys/setting")
 public class SettingController extends SuperController{  
 	
 	@Autowired private ISysSettingService	sysSettingService;

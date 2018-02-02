@@ -50,6 +50,15 @@ public class SysLog extends Model<SysLog> {
      */
 	private Date createTime;
 
+	/**
+	 * 请求方式
+	 */
+	private String method;
+	
+	/**
+	 * 客户端IP
+	 */
+	private String ip;
 
 	public String getId() {
 		return id;
@@ -104,4 +113,21 @@ public class SysLog extends Model<SysLog> {
 		return this.id;
 	}
 
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	
+	
 }

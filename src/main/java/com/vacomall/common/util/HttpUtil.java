@@ -62,8 +62,7 @@ public class HttpUtil {
 	 * @return
 	 */
 	public static boolean isAjax( HttpServletRequest request ) {
-		return true;
-		//return "XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ? true : false;
+		return "XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ? true : false;
 	}
 	
 	/**
@@ -80,7 +79,7 @@ public class HttpUtil {
 	public static void ajaxStatus( HttpServletResponse response, int status, String tip ) {
 		try {
 			response.setContentType("text/html;charset=" + Config.SSO_ENCODING);
-			response.setStatus(status);
+			//response.setStatus(status);
 			PrintWriter out = response.getWriter();
 			out.print(tip);
 			out.flush();
