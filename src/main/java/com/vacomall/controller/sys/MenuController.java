@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baomidou.mybatisplus.entity.Column;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.google.common.collect.Maps;
@@ -188,6 +189,31 @@ public class MenuController extends SuperController {
 			map.put("id", m.getId());
 			map.put("text", StringUtils.join(m.getCode(), "-", m.getMenuName()));
 			listMap.add(map);
+		}
+		return Rest.okData(listMap);
+	}
+	
+	/**
+	 * 获取所有的一级菜单和二级菜单,vue
+	 * @param pid
+	 * @return
+	 */
+	@GetMapping("/tree")
+	public Rest tree() {
+		EntityWrapper<SysMenu> ew = new EntityWrapper<SysMenu>();
+		ew.orderBy("sort");
+		ew.eq("pid", "0");
+		ew.setSqlSelect(Column.create().column("id"),Column.create().column("menuName"));
+		List<Map<String,Object>> listMap = sysMenuService.selectMaps(ew);
+		for (Map<String, Object> map : listMap) {
+			EntityWrapper<SysMenu> wrapper = new EntityWrapper<SysMenu>();
+			wrapper.orderBy("sort");
+			wrapper.eq("pid", map.get("id"));
+			wrapper.setSqlSelect(Column.create().column("id"),Column.create().column("menuName"));
+			List<Map<String, Object>> listMapeExt = sysMenuService.selectMaps(wrapper);
+			if(listMapeExt.size() > 0){
+				map.put("children",listMapeExt);
+			}
 		}
 		return Rest.okData(listMap);
 	}
