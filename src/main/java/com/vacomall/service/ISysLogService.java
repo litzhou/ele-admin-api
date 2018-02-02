@@ -16,8 +16,10 @@ public interface ISysLogService extends IService<SysLog> {
 	 * @param uname
 	 * @param url
 	 * @param parms
+	 * @param ip 
+	 * @param method 
 	 */
-	void insertLog(String title,String uname,String url,String parms);
+	void insertLog(String title,String uname,String url,String parms, String method, String ip);
 
 
 }

@@ -22,7 +22,7 @@ public class ShiroFormAuthenticationFilter extends FormAuthenticationFilter {
 				return true;
 			}
 		} else {
-			HttpUtil.ajaxStatus(httpResponse, 302, JsonUtil.toJson(Rest.failure("会话过期,请重新登录")));
+			HttpUtil.ajaxJson(httpResponse,JsonUtil.toJson(Rest.failure(302,"会话过期,请重新登录",null,null)));
 			return false;
 		}
 	}

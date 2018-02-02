@@ -21,7 +21,7 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
 	public static final Logger logger = Logger.getLogger(SysLogServiceImpl.class);
 	
 	@Override
-	public void insertLog(String title, String uname, String url, String parms) {
+	public void insertLog(String title, String uname, String url, String parms,String method,String ip) {
 		// TODO Auto-generated method stub
 		SysLog sysLog  =new SysLog();
 		sysLog.setCreateTime(new Date());
@@ -29,6 +29,8 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
 		sysLog.setUserName(uname);
 		sysLog.setUrl(url);
 		sysLog.setParams(parms);
+		sysLog.setMethod(method);
+		sysLog.setIp(ip);
 		super.insert(sysLog);
 		logger.debug("记录日志:"+sysLog.toString());
 	}

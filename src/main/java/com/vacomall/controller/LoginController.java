@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.code.kaptcha.servlet.KaptchaExtend;
 import com.vacomall.common.bean.Rest;
 import com.vacomall.common.controller.SuperController;
+import com.vacomall.common.util.IpUtil;
 import com.vacomall.entity.SysUser;
 import com.vacomall.service.ISysLogService;
 
@@ -70,7 +71,7 @@ public class LoginController extends SuperController {
 		 */
 		Subject subject = SecurityUtils.getSubject();
 		SysUser sysUser = (SysUser) subject.getPrincipal();
-		sysLogService.insertLog("用户登录成功", sysUser.getUserName(), request.getRequestURI(), "");
+		sysLogService.insertLog("用户登录成功", sysUser.getUserName(), request.getRequestURI(), "",request.getMethod(),IpUtil.getIpAddr(request));
 		
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("token", sysUser.getUserName());

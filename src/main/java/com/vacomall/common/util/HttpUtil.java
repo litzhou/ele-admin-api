@@ -79,9 +79,24 @@ public class HttpUtil {
 	public static void ajaxStatus( HttpServletResponse response, int status, String tip ) {
 		try {
 			response.setContentType("text/html;charset=" + Config.SSO_ENCODING);
-			//response.setStatus(status);
+			response.setStatus(status);
 			PrintWriter out = response.getWriter();
 			out.print(tip);
+			out.flush();
+		} catch ( IOException e ) {
+			logger.severe(e.toString());
+		}
+	}
+	/**
+	 * ajax返回JSON
+	 * @param response
+	 * @param jsonStr
+	 */
+	public static void ajaxJson( HttpServletResponse response,String jsonStr) {
+		try {
+			response.setContentType("text/html;charset=" + Config.SSO_ENCODING);
+			PrintWriter out = response.getWriter();
+			out.print(jsonStr);
 			out.flush();
 		} catch ( IOException e ) {
 			logger.severe(e.toString());
