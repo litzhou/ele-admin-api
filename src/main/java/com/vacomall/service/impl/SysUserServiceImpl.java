@@ -3,6 +3,7 @@ package com.vacomall.service.impl;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	@Override
 	public void updateUser(SysUser sysUser, String[] roleIds) {
 		// TODO Auto-generated method stub
-		sysUser.setPassword(null);
+		if(StringUtils.isNotBlank(sysUser.getUserName())){
+			sysUser.setPassword(ShiroUtil.md51024Pwd(sysUser.getPassword(), sysUser.getUserName()));
+		}else{
+			sysUser.setPassword(null);
+		}
 		//更新用户
 		userMapper.updateById(sysUser);
 		//删除已有权限
