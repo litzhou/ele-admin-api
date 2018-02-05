@@ -62,12 +62,6 @@ public class MenuController extends SuperController {
 			ew.like(field, search);
 		}
 		Page<SysMenu> pageData = sysMenuService.selectPage(new Page<SysMenu>(page, size), ew);
-		for (SysMenu menu : pageData.getRecords()) {
-			menu.setMenuName("┠ " + menu.getMenuName());
-			for (int i = 1; i < menu.getDeep(); i++) {
-				menu.setMenuName("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + menu.getMenuName());
-			}
-		}
 		return Rest.okData(pageData);
 	}
 
@@ -157,5 +151,19 @@ public class MenuController extends SuperController {
 		ew.orderBy("sort", true);
 		List<SysMenu> list = sysMenuService.selectList(ew);
 		return Rest.okData(list);
+	}
+	/**
+	 * 根据上级ID查询商家菜单
+	 * 
+	 * @param pid
+	 * @return
+	 */
+	@GetMapping("/getPidsByPid")
+	public Rest getPidsByPid(String pid) {
+		SysMenu sysMenu = sysMenuService.selectById(pid);
+		if(sysMenu != null){
+			return Rest.okData(new String[]{pid});
+		}
+		return Rest.okData(new String[]{});
 	}
 }
