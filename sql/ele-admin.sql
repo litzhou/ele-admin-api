@@ -35,7 +35,7 @@ CREATE TABLE `sys_log` (
   `id` varchar(50) NOT NULL COMMENT '主键',
   `userName` varchar(50) NOT NULL COMMENT '用户',
   `title` varchar(300) DEFAULT NULL COMMENT '日志',
-  `url` varchar(300) DEFAULT NULL COMMENT '地址',
+  `url` varchar(500) DEFAULT NULL COMMENT '地址',
   `params` text COMMENT '参数',
   `createTime` datetime DEFAULT NULL COMMENT '日志时间',
   `method` varchar(50) DEFAULT NULL COMMENT '请求方式',
