@@ -8,7 +8,7 @@ https://github.com/litzhou/ele-admin-ui
 2. 设置Context: /ele-admin-api
 3. 启动后接口地址: http://localhost:8081/ele-admin-api/swagger-ui.html#/
 4. 结果如下图所示
-4. 说明，后台账号密码: admin/123456
+5. 说明，后台账号密码: admin/123456
 
 ### 截图
 ![image](https://github.com/litzhou/ele-admin-api/blob/master/imgs/api.png)
