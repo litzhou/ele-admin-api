@@ -48,6 +48,7 @@ public class LoginController extends SuperController {
 	@PostMapping("/doLogin")
 	@ResponseBody
 	public Rest doLogin(String username, String password, String captcha) {
+		
 		Subject currentUser = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
